@@ -15,12 +15,14 @@ class Project {
         Project obj = new Project();
 
         JFrame frame = new JFrame("Vijayant Singh");
-        frame.setSize(400, 400);
+        frame.setSize(400, 200);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JPanel panel = new JPanel(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.VERTICAL;
+        c.anchor = GridBagConstraints.NORTH;
+        c.weighty = 1.0;
         c.gridx = 0;
         c.gridy = 0;
         c.insets = new Insets(0, 8, 20, 8);
