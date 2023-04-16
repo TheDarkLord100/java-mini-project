@@ -60,11 +60,43 @@ class Project {
         c.gridy = 3;
         panel.add(queueButtonPanel, c);
 
+        addButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                list.add(0, obj.getRandomNumber());
+                listLabel.setText(list.toString());
+            }
+        });
+
+        deleteButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                list.removeLast();
+                listLabel.setText(list.toString());
+            }
+        });
+
         JPanel stackButtonPanel = new JPanel(new FlowLayout());
         JButton pushButton = new JButton("Push");
         JButton popButton = new JButton("Pop");
         stackButtonPanel.add(pushButton);
         stackButtonPanel.add(popButton);
+
+        pushButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                list.add(0, obj.getRandomNumber());
+                listLabel.setText(list.toString());
+            }
+        });
+
+        popButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                list.removeFirst();
+                listLabel.setText(list.toString());
+            }
+        });
 
         c.gridy = 4;
         panel.add(stackButtonPanel, c);
@@ -103,5 +135,10 @@ class Project {
             newList.add(rand.nextInt(100));
         }
         return newList;
+    }
+
+    int getRandomNumber() {
+        Random rand = new Random();
+        return rand.nextInt(100);
     }
 }
