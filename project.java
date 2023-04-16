@@ -2,6 +2,8 @@ import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.LinkedList;
 import java.util.Random;
 
@@ -66,6 +68,29 @@ class Project {
 
         c.gridy = 4;
         panel.add(stackButtonPanel, c);
+
+        stackButtonPanel.setVisible(false);
+        queueButtonPanel.setVisible(false);
+
+        stackButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(stackButton.isSelected()) {
+                    stackButtonPanel.setVisible(true);
+                    queueButtonPanel.setVisible(false);
+                }
+            }
+        });
+
+        queueButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(queueButton.isSelected()) {
+                    stackButtonPanel.setVisible(false);
+                    queueButtonPanel.setVisible(true);
+                }
+            }
+        });
 
         frame.add(panel);
         frame.setVisible(true);
