@@ -1,11 +1,6 @@
-import java.awt.FlowLayout;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.LinkedList;
-import java.util.Random;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.*;
 
 import javax.swing.*;
 
@@ -15,7 +10,7 @@ class Project {
         Project obj = new Project();
 
         JFrame frame = new JFrame("Vijayant Singh");
-        frame.setSize(400, 200);
+        frame.setSize(400, 250);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JPanel panel = new JPanel(new GridBagLayout());
@@ -45,6 +40,9 @@ class Project {
         group.add(queueButton);
         group.add(stackButton);
 
+        JLabel errorLabel = new JLabel("");
+
+
         LinkedList<Integer> list = obj.getList();
         JLabel listLabel = new JLabel(list.toString());
         c.gridx = 0;
@@ -65,6 +63,9 @@ class Project {
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if(list.size() == 0) {
+                    errorLabel.setVisible(false);
+                }
                 list.add(0, obj.getRandomNumber());
                 listLabel.setText(list.toString());
             }
@@ -73,6 +74,11 @@ class Project {
         deleteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if(list.size() == 0) {
+                    errorLabel.setText("List is already Empty");
+                    errorLabel.setVisible(true);
+                    return ;
+                }
                 list.removeLast();
                 listLabel.setText(list.toString());
             }
@@ -87,6 +93,9 @@ class Project {
         pushButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if(list.size() == 0) {
+                    errorLabel.setVisible(false);
+                }
                 list.add(0, obj.getRandomNumber());
                 listLabel.setText(list.toString());
             }
@@ -95,6 +104,11 @@ class Project {
         popButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if(list.size() == 0) {
+                    errorLabel.setText("List is already Empty");
+                    errorLabel.setVisible(true);
+                    return ;
+                }
                 list.removeFirst();
                 listLabel.setText(list.toString());
             }
@@ -102,6 +116,10 @@ class Project {
 
         c.gridy = 4;
         panel.add(stackButtonPanel, c);
+
+        c.gridy = 5;
+        panel.add(errorLabel, c);
+        errorLabel.setVisible(false);
 
         stackButtonPanel.setVisible(false);
         queueButtonPanel.setVisible(false);
