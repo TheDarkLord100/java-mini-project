@@ -2,11 +2,16 @@ import java.awt.Component;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.util.LinkedList;
+import java.util.Random;
 
 import javax.swing.*;
 
 class Project {
     public static void main(String[] args) {
+
+        Project obj = new Project();
+
         JFrame frame = new JFrame("Vijayant Singh");
         frame.setSize(400, 200);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -36,7 +41,25 @@ class Project {
         group.add(queueButton);
         group.add(stackButton);
 
+        LinkedList<Integer> list = obj.getList();
+
+        JLabel listLabel = new JLabel(list.toString());
+        c.gridx = 0;
+        c.gridy = 2;
+        c.gridwidth = 2;
+        c.insets = new Insets(20, 0, 0, 0);
+        panel.add(listLabel, c);
+
         frame.add(panel);
         frame.setVisible(true);
+    }
+
+    LinkedList<Integer> getList() {
+        LinkedList<Integer> newList = new LinkedList<Integer>();
+        Random rand = new Random();
+        for(int i = 0; i < 10; i++) {
+            newList.add(rand.nextInt(100));
+        }
+        return newList;
     }
 }
